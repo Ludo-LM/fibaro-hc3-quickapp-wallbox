@@ -1,7 +1,7 @@
-tools = {}
+class 'tools'
 
 -- Get view value
-function tools.getView(self, name, typ)
+function tools:getView(qa, name, typ)
 	local function find(s)
 		if type(s) == 'table' then
 			if s.name == name then
@@ -16,14 +16,14 @@ function tools.getView(self, name, typ)
 			end
 		end
 	end
-	local id = type(self) == "userdata" and self ~= tools and self.id or type(self) == "number" and self > 0 and self
+	local id = type(qa) == "userdata" and qa ~= tools and qa.id or type(qa) == "number" and qa > 0 and qa
 	if id then
 		return find(api.get("/plugins/getView?id="..tostring(id))["$jason"].body.sections)
 	end
 end
 
 -- Check global variable existence
-function tools:checkVG(vg)
+function tools:checkGlobalVariable(vg)
 	if type(vg) == "string" and vg ~= "" then
 		local response, status = api.get("/globalVariables/" .. vg)
 		if type(status) == "number" and (status == 200 or status == 201) and type(response) == "table" then
@@ -40,7 +40,7 @@ function tools:checkVG(vg)
 end
 
 -- Create global variable
-function tools:createVG(varName, varValue, varEnum)
+function tools:createGlobalVariable(varName, varValue, varEnum)
 	if type(varName) == "string" and varName ~= "" then
 		local payload = {name = varName, value = varValue or ""}
 		local response, status = api.post("/globalVariables", payload)
@@ -52,7 +52,7 @@ function tools:createVG(varName, varValue, varEnum)
 					return true
 				end
 			else
-			    return true
+				return true
 			end
 		end
 	end
@@ -60,7 +60,7 @@ function tools:createVG(varName, varValue, varEnum)
 end
 
 -- Change global variable value
-function tools:setVG(vg, value)
+function tools:setGlobalVariable(vg, value)
 	if type(vg) == "string" and vg ~= "" then
 		local oldvalue = fibaro.getGlobalVariable(vg)
 		if oldvalue ~= value then
@@ -69,4 +69,17 @@ function tools:setVG(vg, value)
 		end
 	end
 	return false
+end
+
+-- Get view value
+function tools:addInterface(qa, interface)
+	local id = type(qa) == "userdata" and qa ~= tools and qa.id or type(qa) == "number" and qa > 0 and qa
+	local inf = api.get("/devices/"..tostring(id)).interfaces
+	for _,i in ipairs(inf) do
+		if i==interface then
+			return
+		end
+	end
+	inf[#inf+1]=interface
+	qa:addInterfaces(inf)
 end
