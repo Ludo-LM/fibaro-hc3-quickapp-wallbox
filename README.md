@@ -61,9 +61,9 @@ This Quick App contains translations for `en` and `fr` languages, you can easily
 Please share your translations and create a PR on Github !
 
 ## Release Notes
-- v1.1\
+- v1.1 - 15/06/2024\
 Report energy usage in energy panel.
-- v1.0\
+- v1.0 - 31/05/2024\
 Initial version.
 
 ## Source code
