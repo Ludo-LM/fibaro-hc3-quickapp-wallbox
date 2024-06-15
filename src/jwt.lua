@@ -36,7 +36,7 @@ local function decodeBase64(encoded)
     -- decode bitstring back to chars
     for i = 1, string.len(bitstr), 8 do
         decoded = decoded ..
-                      string.char(fromBinaryString(string.sub(bitstr, i, i + 7)))
+                string.char(fromBinaryString(string.sub(bitstr, i, i + 7)))
     end
     return decoded
 end
@@ -132,7 +132,7 @@ function json.parse(str, pos, end_delim)
             end
         end
         local pos_info_str = 'position ' .. pos .. ': ' ..
-                                 str:sub(pos, pos + 10)
+                str:sub(pos, pos + 10)
         error('Invalid json syntax starting at ' .. pos_info_str)
     end
 end
