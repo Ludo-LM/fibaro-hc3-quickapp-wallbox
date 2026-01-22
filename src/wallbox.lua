@@ -72,7 +72,10 @@ function getBasicOptions(username, password)
 end
 
 function getBearerOptions(meth, token, jsonInput)
-    local jsonData = json.encode(jsonInput) or nil
+    local jsonData = nil
+    if jsonInput then
+        jsonData = json.encode(jsonInput) or nil
+    end
     return {
         method = meth,
         headers = {
@@ -80,7 +83,7 @@ function getBearerOptions(meth, token, jsonInput)
             ["Accept"] = "application/json, text/plain, */*",
             ["Content-Type"] = "application/json;charset=utf-8",
         },
-        data = jsonData,
+        data = jsonData
     }
 end
 

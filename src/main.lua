@@ -1,5 +1,5 @@
 -- Fibaro HC3 Quick App for Wallbox
--- Version 1.1
+-- Version 1.1.1
 
 local status = {
     [0] = "DISCONNECTED",

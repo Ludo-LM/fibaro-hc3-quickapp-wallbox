@@ -61,10 +61,13 @@ This Quick App contains translations for `en` and `fr` languages, you can easily
 Please share your translations and create a PR on Github !
 
 ## Release Notes
+- v1.1.1 - 22/01/2026\
+Fix following a change to the Wallbox API specification.\
+You can update QuickApp from v1.1 to v1.1.1 just by replacing content of the file ___wallbox___ from the source code https://github.com/Ludo-LM/fibaro-hc3-quickapp-wallbox/blob/v1.1.1/src/wallbox.lua
 - v1.1 - 15/06/2024\
 Report energy usage in energy panel.
 - v1.0 - 31/05/2024\
-Initial version.
+Initial version.\
 
 ## Source code
 
